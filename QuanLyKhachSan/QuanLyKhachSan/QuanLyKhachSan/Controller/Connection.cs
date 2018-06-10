@@ -10,7 +10,7 @@ namespace QuanLyKhachSan
 {
     class Connection
     {
-        string conn = @"Data Source=.\SQLEXPRESS;Initial Catalog=QLKS;Integrated Security=True";
+        string conn = @"Data Source=DESKTOP-QRUJQ92;Initial Catalog=QLKS;User ID=sa;Password=0975381329";
         SqlConnection sqlconn;
         SqlCommand sqlcom;
         SqlDataAdapter sqldataa;

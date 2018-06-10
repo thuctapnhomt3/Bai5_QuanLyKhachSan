@@ -17,7 +17,7 @@ namespace QuanLyKhachSan.Layout.SubLayout
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=QLKS;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-QRUJQ92;Initial Catalog=QLKS;User ID=sa;Password=0975381329");
         SqlCommand cmdDV;
         private const int CS_DROPSHADOW = 0x00020000;
         protected override CreateParams CreateParams

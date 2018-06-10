@@ -18,9 +18,9 @@ namespace QuanLyKhachSan.Layout
             InitializeComponent();
         }
 
-        SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=QLKS;Integrated Security=True");
-        SqlDataAdapter adapt;
-        SqlCommand cmdNV;
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-QRUJQ92;Initial Catalog=QLKS;User ID=sa;Password=0975381329");
+        //SqlDataAdapter adapt;
+        //SqlCommand cmdNV;
         bool status = false;
 
 
@@ -52,15 +52,16 @@ namespace QuanLyKhachSan.Layout
         {
             con.Open();
             DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
             if (status == true)
             {
-                adapt = new SqlDataAdapter("select * from dbo.[NHANVIEN]", con);
+                adapter = new SqlDataAdapter("select * from dbo.[NHANVIEN]", con);
             }
             else
             {
-                adapt = new SqlDataAdapter("select * from dbo.[NHANVIEN] where Del = 0 ", con);
+                adapter = new SqlDataAdapter("select * from dbo.[NHANVIEN] where Del = 0 ", con);
             }
-            adapt.Fill(dt);
+            adapter.Fill(dt);
             dataNhanVien.DataSource = dt;
             con.Close();
         }
@@ -75,7 +76,7 @@ namespace QuanLyKhachSan.Layout
                     string del = dataNhanVien.Rows[e.RowIndex].Cells[0].Value.ToString();
                     if ((MessageBox.Show("Xác nhận XOÁ toàn bộ thông tin của khách hàng: " + del, "Xác nhận XOÁ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                     {
-                        cmdNV = new SqlCommand("EXECUTE IUD_NHANVIEN '" + del + "',N'',N'',N'','','','',N'Delete'", con);
+                        var cmdNV = new SqlCommand("EXECUTE IUD_NHANVIEN '" + del + "',N'',N'',N'','','','',N'Delete'", con);
                         cmdNV.ExecuteNonQuery();
                     }
                 }
@@ -117,7 +118,7 @@ namespace QuanLyKhachSan.Layout
                         if ((MessageBox.Show("Khôi phục dữ liệu bị ẩn", "Xác nhận cập nhật", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                         {
                             string maNV = dataNhanVien.Rows[e.RowIndex].Cells[0].Value.ToString();
-                            cmdNV = new SqlCommand("EXECUTE IUD_NHANVIEN '" + maNV + "',N'',N'',N'','','','',N'Show'", con);
+                            SqlCommand cmdNV = new SqlCommand("EXECUTE IUD_NHANVIEN '" + maNV + "',N'',N'',N'','','','',N'Show'", con);
                             cmdNV.ExecuteNonQuery();
                         }
                         con.Close();
@@ -128,7 +129,7 @@ namespace QuanLyKhachSan.Layout
                         if ((MessageBox.Show("Xác nhận ẨN nhân viên", "Xác nhận XOÁ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                         {
                             string maNV = dataNhanVien.Rows[e.RowIndex].Cells[0].Value.ToString();
-                            cmdNV = new SqlCommand("EXECUTE IUD_NHANVIEN '" + maNV + "',N'',N'',N'','','','',N'Hide'", con);
+                            SqlCommand cmdNV = new SqlCommand("EXECUTE IUD_NHANVIEN '" + maNV + "',N'',N'',N'','','','',N'Hide'", con);
                             cmdNV.ExecuteNonQuery();
                         }
                         con.Close();

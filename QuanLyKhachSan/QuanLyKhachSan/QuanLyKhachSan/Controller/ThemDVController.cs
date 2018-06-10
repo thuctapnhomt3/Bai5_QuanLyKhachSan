@@ -51,6 +51,7 @@ namespace QuanLyKhachSan.Controller
                     Notification nf = new Notification("THÊM DỊCH VỤ", "Thêm dịch vụ thành công", "");
                     nf.Show();
                     transfer = 1;
+                    //no phai co 1 ma san trong CSDL
                 }
             }
         }
